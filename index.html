@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3R06ERLL5P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-3R06ERLL5P');
+    </script>
+
+    
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/fav-icon-light.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Age Calculater: The Ultimate Age Calculator - Accurate & Live</title>
+    <meta name="description" content="Instantly calculate your age down to the second with AgeCalculater.com. Our beautiful and accurate age calculator shows your age in years, months, days, and even provides a live ticking clock. Perfect for finding your exact age, exploring fun facts about time, and more. Try it now!">
+    <meta name="keywords" content="age calculator, how to calculate age, online age checker, years months days calculator, date of birth calculator, chronological age, exact age calculator, age finder, birthday calculator, age in seconds, live age counter">
+    <link rel="canonical" href="https://www.agecalculater.com/" />
+    <meta name="robots" content="index, follow">
+    
+    <!-- Google AdSense -->
+    <meta name="google-adsense-account" content="ca-pub-3272888926635438">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.agecalculater.com/">
+    <meta property="og:title" content="Age Calculater: The Ultimate Age Calculator - Accurate & Live">
+    <meta property="og:description" content="Instantly calculate your age in years, months, and days. Features a live age counter, fun facts, and a beautiful dark/light theme. Fast, accurate, and free!">
+    <meta property="og:image" content="https://www.agecalculater.com/assets/logo-social.png">
+    <meta property="og:site_name" content="AgeCalculater.com Age Calculator">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.agecalculater.com/">
+    <meta property="twitter:title" content="Age Calculater: The Ultimate Age Calculator - Accurate & Live">
+    <meta property="twitter:description" content="Instantly calculate your age in years, months, and days. Features a live age counter, fun facts, and a beautiful dark/light theme. Fast, accurate, and free!">
+    <meta property="twitter:image" content="https://www.agecalculater.com/assets/logo-social.png">
+    
+    <meta name="theme-color" content="#0ea5e9">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Modern Scrollbar Styles */
+        :root {
+            --scrollbar-track: #f1f5f9; /* slate-100 */
+            --scrollbar-thumb: #94a3b8; /* slate-400 */
+        }
+        html.dark {
+            --scrollbar-track: #1e293b; /* slate-800 */
+            --scrollbar-thumb: #475569; /* slate-600 */
+        }
+        /* Firefox */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+        }
+        /* Webkit (Chrome, Safari, Edge) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--scrollbar-thumb);
+            border-radius: 4px;
+        }
+
+        /* Confetti Animation Styles */
+        .confetti-piece {
+            position: absolute;
+            width: 8px;
+            height: 16px;
+            top: -20px; /* Start above the viewport */
+            opacity: 0;
+            animation-name: confetti-fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotateZ(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotateZ(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* View Transition API styles */
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+          animation: none;
+          mix-blend-mode: normal;
+        }
+        /* Ensure the new view is always on top for the reveal */
+        ::view-transition-new(root) {
+            z-index: 1;
+        }
+        .dark::view-transition-old(root) {
+            z-index: 1;
+        }
+        .dark::view-transition-new(root) {
+            z-index: 9999;
+        }
+    </style>
+    <script>
+        // Set theme on initial load to prevent flash of unstyled content. Default to light theme.
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class'
+      }
+    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
