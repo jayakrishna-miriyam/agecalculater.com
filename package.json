@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node generate-sitemap.cjs",
     "build": "vite build",
+    "postbuild": "shx cp public/robots.txt dist/",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -15,6 +17,7 @@
   "devDependencies": {
     "@types/node": "^22.14.0",
     "@types/react": "^19.1.12",
+    "shx": "^0.4.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }
