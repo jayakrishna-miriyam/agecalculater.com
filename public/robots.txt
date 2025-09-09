@@ -1,6 +1,4 @@
-# Allow all web crawlers to access all content
 User-agent: *
 Allow: /
 
-# Point crawlers to the sitemap
-Sitemap: https://www.agecalculater.com/sitemap.xml
+Sitemap: https://agecalculater.com/sitemap.xml
