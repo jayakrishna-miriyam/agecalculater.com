@@ -138,39 +138,55 @@ export const AgeCalculator: React.FC = () => {
     }, [shouldAutoCalculate, dob, targetDate]);
 
     const handleShare = async () => {
-        if (!dob || !targetDate || !age) return;
+    if (!dob || !targetDate || !age) return;
 
-        const formatDateForUrl = (date: Date) => date.toISOString().split('T')[0];
-        
-        const shareUrl = `${window.location.origin}${window.location.pathname}?dob=${formatDateForUrl(dob)}&target=${formatDateForUrl(targetDate)}`;
-        
-        const shareText = isFutureDate
-            ? `On ${formatDateForDisplay(targetDate)}, my age will be ${age.years} years, ${age.months} months, and ${age.days} days. Calculate your age on AgeCalculater.com!`
-            : `As of ${formatDateForDisplay(targetDate)}, my age is ${age.years} years, ${age.months} months, and ${age.days} days. Calculate your age on AgeCalculater.com!`;
+    const formatDateForUrl = (date: Date) => date.toISOString().split('T')[0];
+    const shareUrl = `${window.location.origin}${window.location.pathname}?dob=${formatDateForUrl(dob)}&target=${formatDateForUrl(targetDate)}`;
+    const secondsDifference = Math.floor((targetDate.getTime() - dob.getTime()) / 1000);
 
-        const shareData = {
-            title: 'My Age Calculation - AgeCalculater.com',
-            text: shareText,
-            url: shareUrl,
-        };
+    // 🎉 WhatsApp formatted message with bold and italics
+    const shareText = isFutureDate
+        ? `🤩 *On ${formatDateForDisplay(targetDate)}*, I’ll be  
+    *${age.years} years*, _${age.months} months_, and _${age.days} days_ old —  
+    that’s *${secondsDifference.toLocaleString()} seconds* alive! 🎂  
 
-        if (navigator.share) {
-            try {
-                await navigator.share(shareData);
-            } catch (err) {
-                console.error("Couldn't share using Web Share API:", err);
-            }
-        } else {
-            try {
-                await navigator.clipboard.writeText(shareUrl);
-                setCopyButtonText('Link Copied!');
-                setTimeout(() => setCopyButtonText('Share Result'), 2000);
-            } catch (err) {
-                console.error('Failed to copy link:', err);
-                alert('Failed to copy link to clipboard.');
-            }
-        }
+    😜 *Bet you don’t know your exact age in seconds!*`
+        : `🎉 *As of ${formatDateForDisplay(targetDate)}*, I’m  
+    *${age.years} years*, _${age.months} months_, and _${age.days} days_ old —  
+    that’s *${secondsDifference.toLocaleString()} seconds* already! 🤯  
+
+    😜 *Think you know your exact age in seconds?*`;
+
+    const combinedMessage = `${shareText}\n\n👉 Calculate yours here: ${shareUrl}`;
+
+    const shareData = {
+        title: 'My Age Calculation - AgeCalculater.com',
+        text: combinedMessage,
+        url: shareUrl,
     };
+
+    if (navigator.share) {
+        try {
+        await navigator.share(shareData);
+        } catch (err) {
+        console.warn('navigator.share failed, using WhatsApp fallback:', err);
+        const whatsappLink = `https://wa.me/?text=${encodeURIComponent(combinedMessage)}`;
+        window.open(whatsappLink, '_blank');
+        }
+    } else {
+        try {
+        await navigator.clipboard.writeText(combinedMessage);
+        setCopyButtonText('Link Copied!');
+        setTimeout(() => setCopyButtonText('Share Result'), 2000);
+        } catch (err) {
+        console.error('Failed to copy link:', err);
+        alert('Failed to copy link to clipboard.');
+        }
+    }
+    };
+
+
+
 
     const renderResults = () => {
         if (age) {
