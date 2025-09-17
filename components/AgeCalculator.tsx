@@ -260,15 +260,28 @@ export const AgeCalculator: React.FC = () => {
             
             {age && (
                 <div className="mt-4 flex justify-center">
-                    <Button onClick={handleShare} variant="outline" className="gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                           <circle cx="18" cy="5" r="3"></circle>
-                           <circle cx="6" cy="12" r="3"></circle>
-                           <circle cx="18" cy="19" r="3"></circle>
-                           <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                           <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                        </svg>
-                        <span>{copyButtonText}</span>
+                    <Button
+                        onClick={handleShare}
+                        className="relative group overflow-hidden gap-2 bg-gradient-to-r from-rose-500 via-red-500 to-orange-500 text-white border border-transparent shadow-[0_15px_35px_-15px_rgba(244,63,94,0.85)] hover:shadow-[0_25px_50px_-20px_rgba(244,63,94,0.95)] focus:ring-red-500 focus:ring-offset-2 transition-transform duration-300 ease-out hover:-translate-y-1 hover:scale-[1.03]"
+                    >
+                        <span
+                            className="absolute inset-0 pointer-events-none rounded-md bg-gradient-to-r from-rose-400/40 via-red-400/30 to-orange-400/40 blur-xl opacity-60 animate-pulse group-hover:opacity-0 transition-opacity duration-400"
+                            aria-hidden="true"
+                        />
+                        <span
+                            className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 bg-gradient-to-r from-transparent via-white/25 to-transparent transition-opacity duration-500"
+                            aria-hidden="true"
+                        />
+                        <span className="relative z-10 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 drop-shadow-sm">
+                                <circle cx="18" cy="5" r="3"></circle>
+                                <circle cx="6" cy="12" r="3"></circle>
+                                <circle cx="18" cy="19" r="3"></circle>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                            </svg>
+                            <span className="font-semibold tracking-wide">{copyButtonText}</span>
+                        </span>
                     </Button>
                 </div>
             )}
