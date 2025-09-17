@@ -14,11 +14,11 @@ const slugify = (value) =>
         .replace(/(^-|-$)/g, '');
 
 const coreSections = [
-    { path: '/', changefreq: 'monthly', priority: '1.0' },
+    { path: '/', changefreq: 'weekly', priority: '1.0' },
     { path: '/age-calculator', changefreq: 'weekly', priority: '0.9' },
-    { path: '/about-age-calculator', changefreq: 'monthly', priority: '0.7' },
-    { path: '/how-it-works', changefreq: 'monthly', priority: '0.7' },
-    { path: '/fun-facts', changefreq: 'monthly', priority: '0.6' },
+    { path: '/about-age-calculator', changefreq: 'weekly', priority: '0.7' },
+    { path: '/how-it-works', changefreq: 'weekly', priority: '0.7' },
+    { path: '/fun-facts', changefreq: 'weekly', priority: '0.6' },
     { path: '/faq', changefreq: 'weekly', priority: '0.8' },
 ];
 
@@ -36,13 +36,13 @@ const faqQuestions = [
 
 const faqUrls = faqQuestions.map((question) => ({
     path: `/faq/${slugify(question)}`,
-    changefreq: 'monthly',
+    changefreq: 'weekly',
     priority: '0.6',
 }));
 
 const additionalIdeas = [
-    { path: '/tools/date-difference-calculator', changefreq: 'monthly', priority: '0.6' },
-    { path: '/tools/birthday-countdown', changefreq: 'monthly', priority: '0.55' },
+    { path: '/tools/date-difference-calculator', changefreq: 'weekly', priority: '0.6' },
+    { path: '/tools/birthday-countdown', changefreq: 'weekly', priority: '0.55' },
     { path: '/resources/age-calculation-guide', changefreq: 'yearly', priority: '0.5' },
     { path: '/blog/benefits-of-age-calculators', changefreq: 'yearly', priority: '0.45' },
 ];

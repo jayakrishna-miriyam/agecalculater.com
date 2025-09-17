@@ -137,56 +137,79 @@ export const AgeCalculator: React.FC = () => {
         }
     }, [shouldAutoCalculate, dob, targetDate]);
 
+    const buildShareContent = () => {
+        if (!dob || !targetDate || !age) {
+            return null;
+        }
+
+        const formatDateForUrl = (date: Date) => date.toISOString().split('T')[0];
+        const shareUrl = `${window.location.origin}${window.location.pathname}?dob=${formatDateForUrl(dob)}&target=${formatDateForUrl(targetDate)}`;
+        const secondsDifference = Math.floor((targetDate.getTime() - dob.getTime()) / 1000);
+
+        // Build the formatted message
+        const shareText = isFutureDate
+        ? `*On ${formatDateForDisplay(targetDate)}*, I'll be\n\n` +
+            `*${age.years} years*, _${age.months} months_, and _${age.days} days_ old —\n` +
+            `that's *${secondsDifference.toLocaleString()} seconds* alive! \n\n` +
+            `*Bet you don't know your exact age in seconds!*`
+        : `*Ever wondered your exact age down to days, months and seconds?* \n\n`+
+            `As of *${formatDateForDisplay(targetDate)}*, \n` +
+            `I'm *${age.years} years, _${age.months} months_, and _${age.days} days_ old* \n` + 
+            `— that's _*${secondsDifference.toLocaleString()} seconds*_ already! \n\n` +
+            `> *Think you know your exact age in seconds?*`;
+
+
+// Guess what? I’m 23 years, 0 months, 0 days old today! 🎂
+// Bet you don’t know your exact age in months and days
+
+
+        const combinedMessage = `${shareText}\n\n\n\n *Find yours instantly with this calculator:*\n ${shareUrl}`;
+
+
+        return { shareUrl, combinedMessage };
+    };
+
     const handleShare = async () => {
-    if (!dob || !targetDate || !age) return;
+        const shareContent = buildShareContent();
+        if (!shareContent) {
+            return;
+        }
 
-    const formatDateForUrl = (date: Date) => date.toISOString().split('T')[0];
-    const shareUrl = `${window.location.origin}${window.location.pathname}?dob=${formatDateForUrl(dob)}&target=${formatDateForUrl(targetDate)}`;
-    const secondsDifference = Math.floor((targetDate.getTime() - dob.getTime()) / 1000);
+        const { shareUrl, combinedMessage } = shareContent;
+        const shareData = {
+            title: 'My Age Calculation - AgeCalculater.com',
+            text: combinedMessage,
+            url: shareUrl,
+        };
 
-    // 🎉 WhatsApp formatted message with bold and italics
-    const shareText = isFutureDate
-        ? `🤩 *On ${formatDateForDisplay(targetDate)}*, I’ll be  
-    *${age.years} years*, _${age.months} months_, and _${age.days} days_ old —  
-    that’s *${secondsDifference.toLocaleString()} seconds* alive! 🎂  
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+                return;
+            } catch (err) {
+                console.warn('navigator.share failed, falling back to copy:', err);
+            }
+        }
 
-    😜 *Bet you don’t know your exact age in seconds!*`
-        : `🎉 *As of ${formatDateForDisplay(targetDate)}*, I’m  
-    *${age.years} years*, _${age.months} months_, and _${age.days} days_ old —  
-    that’s *${secondsDifference.toLocaleString()} seconds* already! 🤯  
-
-    😜 *Think you know your exact age in seconds?*`;
-
-    const combinedMessage = `${shareText}\n\n👉 Calculate yours here: ${shareUrl}`;
-
-    const shareData = {
-        title: 'My Age Calculation - AgeCalculater.com',
-        text: combinedMessage,
-        url: shareUrl,
+        try {
+            await navigator.clipboard.writeText(combinedMessage);
+            setCopyButtonText('Link Copied!');
+            setTimeout(() => setCopyButtonText('Share Result'), 2000);
+        } catch (err) {
+            console.error('Failed to copy link:', err);
+            alert('Failed to copy link to clipboard.');
+        }
     };
 
-    if (navigator.share) {
-        try {
-        await navigator.share(shareData);
-        } catch (err) {
-        console.warn('navigator.share failed, using WhatsApp fallback:', err);
-        const whatsappLink = `https://wa.me/?text=${encodeURIComponent(combinedMessage)}`;
-        window.open(whatsappLink, '_blank');
+    const handleWhatsAppShare = () => {
+        const shareContent = buildShareContent();
+        if (!shareContent) {
+            return;
         }
-    } else {
-        try {
-        await navigator.clipboard.writeText(combinedMessage);
-        setCopyButtonText('Link Copied!');
-        setTimeout(() => setCopyButtonText('Share Result'), 2000);
-        } catch (err) {
-        console.error('Failed to copy link:', err);
-        alert('Failed to copy link to clipboard.');
-        }
-    }
+
+        const whatsappLink = `https://wa.me/?text=${encodeURIComponent(shareContent.combinedMessage)}`;
+        window.open(whatsappLink, '_blank', 'noopener,noreferrer');
     };
-
-
-
 
     const renderResults = () => {
         if (age) {
@@ -275,7 +298,7 @@ export const AgeCalculator: React.FC = () => {
             </div>
             
             {age && (
-                <div className="mt-4 flex justify-center">
+                <div className="mt-4 flex flex-col items-stretch justify-center gap-3 sm:flex-row">
                     <Button
                         onClick={handleShare}
                         className="relative group overflow-hidden gap-2 bg-gradient-to-r from-rose-500 via-red-500 to-orange-500 text-white border border-transparent shadow-[0_15px_35px_-15px_rgba(244,63,94,0.85)] hover:shadow-[0_25px_50px_-20px_rgba(244,63,94,0.95)] focus:ring-red-500 focus:ring-offset-2 transition-transform duration-300 ease-out hover:-translate-y-1 hover:scale-[1.03]"
@@ -299,9 +322,36 @@ export const AgeCalculator: React.FC = () => {
                             <span className="font-semibold tracking-wide">{copyButtonText}</span>
                         </span>
                     </Button>
+                    <Button
+                        onClick={handleWhatsAppShare}
+                        aria-label="Share via WhatsApp"
+                        className="relative group overflow-hidden gap-2 bg-gradient-to-r from-green-500 via-emerald-500 to-emerald-600 text-white border border-transparent shadow-[0_15px_35px_-15px_rgba(16,185,129,0.85)] hover:shadow-[0_25px_50px_-20px_rgba(16,185,129,0.95)] focus:ring-emerald-500 focus:ring-offset-2 transition-transform duration-300 ease-out hover:-translate-y-1 hover:scale-[1.03]"
+                    >
+                        <span
+                            className="absolute inset-0 pointer-events-none rounded-md bg-gradient-to-r from-emerald-400/40 via-green-400/30 to-lime-400/40 blur-xl opacity-60 animate-pulse group-hover:opacity-0 transition-opacity duration-400"
+                            aria-hidden="true"
+                        />
+                        <span
+                            className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 bg-gradient-to-r from-transparent via-white/25 to-transparent transition-opacity duration-500"
+                            aria-hidden="true"
+                        />
+                        <span className="relative z-10 flex items-center gap-2">
+                        {/* ✅ WhatsApp Icon */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 32 32"
+                            width="20"
+                            height="20"
+                            fill="currentColor"
+                            className="h-5 w-5 drop-shadow-sm"
+                        >
+                            <path d="M16 .667C7.6.667.667 7.6.667 16c0 2.83.74 5.56 2.13 7.96L0 32l8.3-2.77A15.24 15.24 0 0016 31.333c8.4 0 15.333-6.933 15.333-15.333S24.4.667 16 .667zm0 27.466a12.04 12.04 0 01-6.13-1.71l-.44-.26-4.92 1.64 1.63-4.8-.29-.5a11.87 11.87 0 01-1.73-6.2c0-6.56 5.34-11.9 11.9-11.9 6.56 0 11.9 5.34 11.9 11.9 0 6.56-5.34 11.9-11.9 11.9zm6.57-8.9c-.36-.18-2.13-1.05-2.46-1.18-.33-.12-.57-.18-.81.18-.24.36-.93 1.18-1.14 1.42-.21.24-.42.27-.78.09-.36-.18-1.51-.56-2.88-1.78-1.06-.94-1.77-2.1-1.98-2.46-.21-.36-.02-.55.16-.73.16-.16.36-.42.54-.63.18-.21.24-.36.36-.6.12-.24.06-.45-.03-.63-.09-.18-.81-1.95-1.11-2.67-.29-.72-.6-.62-.81-.63-.21-.01-.45-.01-.69-.01-.24 0-.63.09-.96.45-.33.36-1.26 1.23-1.26 3 .01 1.77 1.29 3.48 1.47 3.72.18.24 2.54 3.9 6.15 5.46.86.37 1.52.59 2.04.75.86.27 1.64.23 2.25.14.69-.1 2.13-.87 2.43-1.71.3-.84.3-1.56.21-1.71-.09-.15-.33-.24-.69-.42z" />
+                        </svg>
+                        <span className="font-semibold tracking-wide">WhatsApp</span>
+                        </span>
+                    </Button>
                 </div>
             )}
-            
             {age && dob && dob < new Date() && (
                  <LiveAgeCounter dob={dob} targetDate={targetDate} />
             )}
