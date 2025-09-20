@@ -21,7 +21,11 @@ const App: React.FC = () => {
     return (
         <div className="min-h-screen">
             <Header theme={theme} toggleTheme={toggleTheme} />
+
+            <div style={{ maxWidth: "970px", margin: "20px auto" }}>
+            {/* Google AdSense banner */}
             <AdSenseHorizontal />
+            </div>
 
             <main className="container mx-auto px-4 py-8 md:py-12">
                 <Hero />
@@ -32,14 +36,20 @@ const App: React.FC = () => {
                         <ContentSection title="About Our Age Calculator">
                             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{aboutContent}</p>
                         </ContentSection>
-                        
-                        <AdSenseHorizontal />
+                                    
+                        <div style={{ maxWidth: "970px", margin: "20px auto" }}>
+                            {/* Google AdSense banner */}
+                            <AdSenseHorizontal />
+                        </div>
                         
                         <ContentSection title="How It Works">
                              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{howItWorksContent}</p>
                         </ContentSection>
 
-                        <AdSenseHorizontal />
+                        <div style={{ maxWidth: "970px", margin: "20px auto" }}>
+                            {/* Google AdSense banner */}
+                            <AdSenseHorizontal />
+                        </div>
                         
                         <ContentSection title="Fun Facts About Time & Age">
                              <ul className="list-disc list-outside pl-5 space-y-2 text-slate-600 dark:text-slate-400">
@@ -49,7 +59,10 @@ const App: React.FC = () => {
                             </ul>
                         </ContentSection>
  
-                        <AdSenseHorizontal />
+                        <div style={{ maxWidth: "970px", margin: "20px auto" }}>
+                            {/* Google AdSense banner */}
+                            <AdSenseHorizontal />
+                        </div>
                                                
                         <ContentSection title="Frequently Asked Questions">
                             <div className="mb-6 relative">
@@ -75,6 +88,10 @@ const App: React.FC = () => {
                                 )}
                             </div>
                         </ContentSection>
+                        <div style={{ maxWidth: "970px", margin: "20px auto" }}>
+                            {/* Google AdSense banner */}
+                            <AdSenseHorizontal />
+                        </div>                        
                     </div>
                 </div>
             </main>
