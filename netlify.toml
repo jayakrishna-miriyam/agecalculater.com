@@ -3,24 +3,28 @@
   publish = "dist"
 
 [[redirects]]
+  from = "https://www.agecalculater.com/*"
+  to = "https://agecalculater.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.agecalculater.com/*"
+  to = "https://agecalculater.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://agecalculater.com/*"
+  to = "https://agecalculater.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/ads.txt"
   to = "/ads.txt"
   status = 200
 
-
-[[redirects]]
-  from = "https://www.agecalculater.com/robots.txt"
-  to = "/robots.txt"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "https://www.agecalculater.com/sitemap.xml"
-  to = "/sitemap.xml"
-  status = 200
-  force = true
-
-# Optional: explicit 200 on non-www too (harmless/clear)
 [[redirects]]
   from = "/robots.txt"
   to = "/robots.txt"
@@ -31,7 +35,6 @@
   to = "/sitemap.xml"
   status = 200
 
-# --- Keep SPA fallback LAST ---
 [[redirects]]
   from = "/*"
   to = "/index.html"
