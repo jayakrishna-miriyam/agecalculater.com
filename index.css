@@ -1,0 +1,30 @@
+:root {
+    color-scheme: light dark;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.prose-copy p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.prose-copy ul {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-left: 1.25rem;
+}
+
+.prose-copy li {
+    margin-bottom: 0.5rem;
+}

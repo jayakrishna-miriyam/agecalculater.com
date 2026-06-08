@@ -1,117 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.agecalculater.com/</loc>
-    <lastmod>2025-09-20</lastmod>
+    <loc>https://agecalculater.com/all-tools</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://agecalculater.com/</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.agecalculater.com/age-calculator</loc>
-    <lastmod>2025-09-20</lastmod>
+    <loc>https://agecalculater.com/age-difference-calculator</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.agecalculater.com/about-age-calculator</loc>
-    <lastmod>2025-09-20</lastmod>
+    <loc>https://agecalculater.com/birthday-countdown-calculator</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.agecalculater.com/how-it-works</loc>
-    <lastmod>2025-09-20</lastmod>
+    <loc>https://agecalculater.com/date-difference-calculator</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.agecalculater.com/fun-facts</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.agecalculater.com/faq</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://agecalculater.com/how-to-calculate-age</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.agecalculater.com/faq/how-is-age-calculated-so-accurately</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://agecalculater.com/leap-year-age-calculator</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://www.agecalculater.com/faq/does-this-calculator-account-for-leap-years</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://agecalculater.com/child-age-calculator</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://www.agecalculater.com/faq/is-my-date-of-birth-saved-on-your-server</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://agecalculater.com/age-calculator-for-school-admission</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://www.agecalculater.com/faq/why-does-the-age-summary-show-a-different-number-of-months-than-the-main-result</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://agecalculater.com/age-calculator-for-passport-visa</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://www.agecalculater.com/faq/can-i-use-this-for-things-other-than-my-age</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.agecalculater.com/faq/how-does-the-calculator-handle-timezones</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.agecalculater.com/faq/what-should-i-do-if-the-result-seems-incorrect</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.agecalculater.com/faq/what-is-chronological-age</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.agecalculater.com/faq/can-i-use-this-to-calculate-future-or-past-ages</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.agecalculater.com/tools/date-difference-calculator</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.agecalculater.com/tools/birthday-countdown</loc>
-    <lastmod>2025-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.55</priority>
-  </url>
-  <url>
-    <loc>https://www.agecalculater.com/resources/age-calculation-guide</loc>
-    <lastmod>2025-09-20</lastmod>
+    <loc>https://agecalculater.com/about-us</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.agecalculater.com/blog/benefits-of-age-calculators</loc>
-    <lastmod>2025-09-20</lastmod>
+    <loc>https://agecalculater.com/contact-us</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.45</priority>
+  </url>
+  <url>
+    <loc>https://agecalculater.com/privacy-policy</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://agecalculater.com/terms-and-conditions</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://agecalculater.com/disclaimer</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
 </urlset>

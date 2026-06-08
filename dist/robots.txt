@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://agecalculater.com/sitemap.xml
+Host: agecalculater.com
