@@ -93,13 +93,16 @@ export const SeoManager: React.FC<SeoManagerProps> = ({
         }
         canonical.href = canonicalUrl;
 
-        let schemaTag = document.head.querySelector<HTMLScriptElement>('script[data-seo-schema="true"]');
+        let schemaTag = document.head.querySelector<HTMLScriptElement>(
+            'script[data-seo-schema="true"], script[data-static-seo-schema="true"]'
+        );
         if (!schemaTag) {
             schemaTag = document.createElement('script');
             schemaTag.type = 'application/ld+json';
-            schemaTag.dataset.seoSchema = 'true';
             document.head.appendChild(schemaTag);
         }
+        delete schemaTag.dataset.staticSeoSchema;
+        schemaTag.dataset.seoSchema = 'true';
         schemaTag.textContent = schema ? JSON.stringify(schema) : '';
     }, [description, path, robots, schema, title, type]);
 

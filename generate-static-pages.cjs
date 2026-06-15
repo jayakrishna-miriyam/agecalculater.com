@@ -187,10 +187,13 @@ const renderPage = (page) => {
     );
   }
 
-  html = html.replace(/\s*<script data-static-seo-schema="true" type="application\/ld\+json">.*?<\/script>/s, '');
+  html = html.replace(
+    /\s*<script (?:data-seo-schema="true"|data-static-seo-schema="true") type="application\/ld\+json">.*?<\/script>/s,
+    ''
+  );
   html = html.replace(
     '</head>',
-    `    <script data-static-seo-schema="true" type="application/ld+json">${schemaJson}</script>\n</head>`
+    `    <script data-seo-schema="true" type="application/ld+json">${schemaJson}</script>\n</head>`
   );
 
   return html;
