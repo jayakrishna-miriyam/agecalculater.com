@@ -54,8 +54,8 @@ export const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, pathname, on
                                     }}
                                     className={`transition-colors ${
                                         isActive
-                                            ? 'text-sky-600 dark:text-sky-300'
-                                            : 'text-slate-600 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-300'
+                                            ? 'text-sky-700 dark:text-sky-200'
+                                            : 'text-slate-700 hover:text-sky-700 dark:text-slate-200 dark:hover:text-sky-200'
                                     }`}
                                 >
                                     {link.label}

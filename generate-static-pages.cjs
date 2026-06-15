@@ -112,6 +112,57 @@ const buildSchema = (page) => {
   };
 };
 
+const fallbackMarkup = (page) => {
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/all-tools', label: 'All Tools' },
+    { href: '/age-difference-calculator', label: 'Age Difference' },
+    { href: '/birthday-countdown-calculator', label: 'Birthday Countdown' },
+  ];
+
+  const intro =
+    page.path === '/'
+      ? 'This age calculator helps you measure the exact calendar age between a date of birth and a target date. Instead of giving a rough estimate, it counts full years first, then the remaining months, and then the leftover days so the result matches the way people normally express age.'
+      : page.description;
+
+  const eyebrow =
+    page.path === '/'
+      ? 'Exact age in years, months, and days'
+      : page.type === 'article'
+      ? 'Guide and calculator resource'
+      : 'Calculator and tool page';
+
+  const navMarkup = navLinks
+    .map((link) => {
+      const isActive = link.href === page.path;
+      const color = isActive ? '#0369a1' : '#334155';
+      const weight = isActive ? '700' : '500';
+      return `<a href="${link.href}" style="color:${color};font-weight:${weight};">${escapeHtml(link.label)}</a>`;
+    })
+    .join('');
+
+  return `
+        <main style="margin:0 auto;max-width:72rem;padding:1rem 1rem 3rem;">
+            <header style="display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.75rem 0 1rem;border-bottom:1px solid #e2e8f0;">
+                <div style="font-size:1.25rem;font-weight:800;color:#0f172a;">AgeCalculater.com</div>
+                <nav aria-label="Primary navigation" style="display:flex;flex-wrap:wrap;gap:0.75rem;font-size:0.95rem;">${navMarkup}</nav>
+            </header>
+            <section style="margin-top:1.5rem;border:1px solid #e2e8f0;border-radius:1.5rem;background:linear-gradient(135deg,#e0f2fe,#ffffff,#dcfce7);padding:1.5rem;">
+                <div style="max-width:46rem;">
+                    <div style="display:inline-block;margin-bottom:1rem;padding:0.5rem 0.875rem;border-radius:9999px;background:#ffffff;color:#0369a1;font-size:0.9rem;font-weight:700;border:1px solid #bae6fd;">
+                        ${escapeHtml(eyebrow)}
+                    </div>
+                    <h1 style="margin:0 0 0.75rem;font-size:2rem;line-height:1.1;font-weight:800;color:#0f172a;">${escapeHtml(
+                      page.heading
+                    )}</h1>
+                    <p style="margin:0;font-size:1rem;line-height:1.7;color:#334155;">
+                        ${escapeHtml(intro)}
+                    </p>
+                </div>
+            </section>
+        </main>`;
+};
+
 const renderPage = (page) => {
   const canonicalUrl = `${siteUrl}${page.path === '/' ? '/' : page.path}`;
   const robots = page.noindex ? 'noindex, follow' : 'index, follow';
@@ -191,6 +242,7 @@ const renderPage = (page) => {
     /\s*<script (?:data-seo-schema="true"|data-static-seo-schema="true") type="application\/ld\+json">.*?<\/script>/s,
     ''
   );
+  html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${fallbackMarkup(page)}</div>`);
   html = html.replace(
     '</head>',
     `    <script data-seo-schema="true" type="application/ld+json">${schemaJson}</script>\n</head>`
