@@ -11,7 +11,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, pathname, onNavigate }) => {
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/80">
+        <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
             <div className="container mx-auto flex flex-col gap-3 px-4 py-3 md:h-20 md:flex-row md:items-center md:justify-between">
                 <a
                     href="/"
@@ -21,8 +21,24 @@ export const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, pathname, on
                         onNavigate('/');
                     }}
                 >
-                    <img src="https://res.cloudinary.com/miryam/image/upload/v1757368189/agecalculater.com/assets/age-calculater-logo-black_webP.webp" alt="AgeCalculater.com Logo" className="block h-12 dark:hidden" />
-                    <img src="https://res.cloudinary.com/miryam/image/upload/v1757368190/agecalculater.com/assets/age-calculater-logo-white_webP.webp" alt="AgeCalculater.com Logo" className="hidden h-12 dark:block" />
+                    <img
+                        src="https://res.cloudinary.com/miryam/image/upload/f_auto,q_auto,w_240/v1757368189/agecalculater.com/assets/age-calculater-logo-black_webP.webp"
+                        alt="AgeCalculater.com Logo"
+                        className="block h-12 w-auto dark:hidden"
+                        width="240"
+                        height="110"
+                        fetchPriority="high"
+                        decoding="async"
+                    />
+                    <img
+                        src="https://res.cloudinary.com/miryam/image/upload/f_auto,q_auto,w_240/v1757368190/agecalculater.com/assets/age-calculater-logo-white_webP.webp"
+                        alt="AgeCalculater.com Logo"
+                        className="hidden h-12 w-auto dark:block"
+                        width="240"
+                        height="110"
+                        fetchPriority="high"
+                        decoding="async"
+                    />
                 </a>
                 <div className="flex flex-col gap-3 md:flex-row md:items-center">
                     <nav aria-label="Primary" className="flex flex-wrap gap-x-4 gap-y-2 text-sm font-medium">

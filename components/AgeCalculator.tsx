@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Card } from './ui/Card';
 import { Label } from './ui/Label';
 import { DatePicker } from './ui/DatePicker';
-import { LiveAgeCounter } from './LiveAgeCounter';
 import { Button } from './ui/Button';
-import { BirthdayConfetti } from './BirthdayConfetti';
 import type { Age } from '../types';
 import { calculateAge, formatDateForDisplay } from '../utils/dateUtils';
+
+const BirthdayConfetti = lazy(() => import('./BirthdayConfetti').then((module) => ({ default: module.BirthdayConfetti })));
+const LiveAgeCounter = lazy(() => import('./LiveAgeCounter').then((module) => ({ default: module.LiveAgeCounter })));
 
 const updateMetaTags = (title: string, description: string) => {
     document.title = title;
@@ -245,18 +246,18 @@ export const AgeCalculator: React.FC = () => {
 
     return (
         <Card className="relative p-6 md:p-8">
-            {isBirthday && <BirthdayConfetti />}
+            {isBirthday && (
+                <Suspense fallback={null}>
+                    <BirthdayConfetti />
+                </Suspense>
+            )}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                    <Label htmlFor="dob">
-                        Date of Birth <span className="font-normal text-slate-400 dark:text-slate-500">(DD-MM-YYYY)</span>
-                    </Label>
+                    <Label htmlFor="dob">Date of Birth</Label>
                     <DatePicker id="dob" value={dob} onChange={setDob} />
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="targetDate">
-                        Age at the Date of <span className="font-normal text-slate-400 dark:text-slate-500">(DD-MM-YYYY)</span>
-                    </Label>
+                    <Label htmlFor="targetDate">Age at the Date of</Label>
                     <DatePicker id="targetDate" value={targetDate} onChange={setTargetDate} />
                 </div>
             </div>
@@ -327,7 +328,11 @@ export const AgeCalculator: React.FC = () => {
                     </Button>
                 </div>
             )}
-            {age && dob && dob < new Date() && <LiveAgeCounter dob={dob} targetDate={targetDate} />}
+            {age && dob && dob < new Date() && (
+                <Suspense fallback={null}>
+                    <LiveAgeCounter dob={dob} targetDate={targetDate} />
+                </Suspense>
+            )}
         </Card>
     );
 };

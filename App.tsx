@@ -1,12 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { AgeCalculator } from './components/AgeCalculator';
 import { ContentSection } from './components/ContentSection';
 import { FAQItem } from './components/FAQItem';
 import { SeoManager } from './components/SeoManager';
-import { DateDifferenceCalculator } from './components/DateDifferenceCalculator';
-import { BirthdayCountdownCalculator } from './components/BirthdayCountdownCalculator';
 import { useTheme } from './hooks/useTheme';
 import { Input } from './components/ui/Input';
 import {
@@ -19,6 +17,19 @@ import {
     toolDirectory,
     type PageMeta,
 } from './siteContent';
+
+const DateDifferenceCalculator = lazy(() =>
+    import('./components/DateDifferenceCalculator').then((module) => ({ default: module.DateDifferenceCalculator }))
+);
+const BirthdayCountdownCalculator = lazy(() =>
+    import('./components/BirthdayCountdownCalculator').then((module) => ({ default: module.BirthdayCountdownCalculator }))
+);
+
+const calculatorFallback = (
+    <div className="rounded-[1.75rem] bg-white p-6 shadow-xl ring-1 ring-slate-200 dark:bg-slate-900/90 dark:ring-slate-700">
+        <p className="text-center text-sm text-slate-500 dark:text-slate-400">Loading calculator...</p>
+    </div>
+);
 
 const normalizePath = (path: string) => {
     if (!path || path === '/') {
@@ -389,7 +400,9 @@ const App: React.FC = () => {
     } else if (currentPage.path === '/age-difference-calculator') {
         pageBody = (
             <div className="space-y-12">
-                <DateDifferenceCalculator />
+                <Suspense fallback={calculatorFallback}>
+                    <DateDifferenceCalculator />
+                </Suspense>
                 <ToolStepsSection
                     title="How to use the age difference calculator"
                     steps={[
@@ -420,7 +433,9 @@ const App: React.FC = () => {
     } else if (currentPage.path === '/birthday-countdown-calculator') {
         pageBody = (
             <div className="space-y-12">
-                <BirthdayCountdownCalculator />
+                <Suspense fallback={calculatorFallback}>
+                    <BirthdayCountdownCalculator />
+                </Suspense>
                 <ToolStepsSection
                     title="How to use the birthday countdown calculator"
                     steps={[
@@ -451,7 +466,9 @@ const App: React.FC = () => {
     } else if (currentPage.path === '/date-difference-calculator') {
         pageBody = (
             <div className="space-y-12">
-                <DateDifferenceCalculator />
+                <Suspense fallback={calculatorFallback}>
+                    <DateDifferenceCalculator />
+                </Suspense>
                 <ToolStepsSection
                     title="How to use the date difference calculator"
                     steps={[
