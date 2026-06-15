@@ -142,7 +142,7 @@ const fallbackMarkup = (page) => {
     .join('');
 
   return `
-        <main style="margin:0 auto;max-width:72rem;padding:1rem 1rem 3rem;">
+        <main class="preload-shell" style="margin:0 auto;max-width:72rem;padding:1rem 1rem 3rem;">
             <header style="display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.75rem 0 1rem;border-bottom:1px solid #e2e8f0;">
                 <div style="font-size:1.25rem;font-weight:800;color:#0f172a;">AgeCalculater.com</div>
                 <nav aria-label="Primary navigation" style="display:flex;flex-wrap:wrap;gap:0.75rem;font-size:0.95rem;">${navMarkup}</nav>
