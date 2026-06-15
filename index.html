@@ -1,12 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3R06ERLL5P"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-3R06ERLL5P');
+      (function () {
+        const analyticsId = 'G-3R06ERLL5P';
+        const adsenseSrc = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3272888926635438';
+        const analyticsSrc = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
+        const isMobile = window.matchMedia('(max-width: 767px)').matches;
+        const analyticsDelay = isMobile ? 2500 : 1200;
+        const adsenseDelay = isMobile ? 4500 : 2200;
+        const state = {
+          analyticsLoaded: false,
+          analyticsLoading: false,
+          adsenseLoaded: false,
+          adsenseLoading: false,
+          interactionTriggered: false,
+        };
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function gtag() {
+          window.dataLayer.push(arguments);
+        };
+
+        const loadScriptOnce = (src, attributeName, onLoad) => {
+          const existing = document.querySelector(`script[${attributeName}="true"]`);
+          if (existing) {
+            if (existing.dataset.loaded === 'true') {
+              onLoad?.();
+            } else if (onLoad) {
+              existing.addEventListener('load', onLoad, { once: true });
+            }
+            return existing;
+          }
+
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = src;
+          script.setAttribute(attributeName, 'true');
+          if (src.includes('pagead2.googlesyndication.com')) {
+            script.crossOrigin = 'anonymous';
+          }
+          script.addEventListener('load', () => {
+            script.dataset.loaded = 'true';
+            onLoad?.();
+          }, { once: true });
+          document.head.appendChild(script);
+          return script;
+        };
+
+        const loadAnalytics = () => {
+          if (state.analyticsLoaded || state.analyticsLoading) return;
+          state.analyticsLoading = true;
+          loadScriptOnce(analyticsSrc, 'data-analytics-loader', () => {
+            if (!state.analyticsLoaded) {
+              window.gtag('js', new Date());
+              window.gtag('config', analyticsId);
+              state.analyticsLoaded = true;
+              window.dispatchEvent(new Event('agecalc:analytics-ready'));
+            }
+          });
+        };
+
+        const loadAdsense = () => {
+          if (state.adsenseLoaded || state.adsenseLoading) return;
+          state.adsenseLoading = true;
+          loadScriptOnce(adsenseSrc, 'data-adsense-loader', () => {
+            state.adsenseLoaded = true;
+            window.dispatchEvent(new Event('agecalc:adsense-ready'));
+          });
+        };
+
+        const runWhenIdle = (callback, delay) => {
+          window.setTimeout(() => {
+            if ('requestIdleCallback' in window) {
+              window.requestIdleCallback(callback, { timeout: 2000 });
+            } else {
+              callback();
+            }
+          }, delay);
+        };
+
+        const scheduleThirdParties = () => {
+          runWhenIdle(loadAnalytics, analyticsDelay);
+          runWhenIdle(loadAdsense, adsenseDelay);
+        };
+
+        const triggerOnInteraction = () => {
+          if (state.interactionTriggered) return;
+          state.interactionTriggered = true;
+          window.setTimeout(loadAnalytics, 150);
+          window.setTimeout(loadAdsense, 600);
+        };
+
+        ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach((eventName) => {
+          window.addEventListener(eventName, triggerOnInteraction, {
+            once: true,
+            passive: true,
+          });
+        });
+
+        window.__agecalcThirdParty = {
+          loadAnalytics,
+          loadAdsense,
+          state,
+        };
+
+        if (document.readyState === 'complete') {
+          scheduleThirdParties();
+        } else {
+          window.addEventListener('load', scheduleThirdParties, { once: true });
+        }
+      })();
     </script>
 
     <meta charset="UTF-8" />
@@ -123,6 +227,5 @@
 <body class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3272888926635438" crossorigin="anonymous"></script>
 </body>
 </html>
