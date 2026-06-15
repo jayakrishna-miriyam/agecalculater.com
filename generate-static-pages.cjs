@@ -242,7 +242,10 @@ const renderPage = (page) => {
     /\s*<script (?:data-seo-schema="true"|data-static-seo-schema="true") type="application\/ld\+json">.*?<\/script>/s,
     ''
   );
-  html = html.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${fallbackMarkup(page)}</div>`);
+  html = html.replace(
+    /<!-- PRELOAD_SHELL_START -->[\s\S]*?<!-- PRELOAD_SHELL_END -->/,
+    `<!-- PRELOAD_SHELL_START -->\n${fallbackMarkup(page)}\n        <!-- PRELOAD_SHELL_END -->`
+  );
   html = html.replace(
     '</head>',
     `    <script data-seo-schema="true" type="application/ld+json">${schemaJson}</script>\n</head>`

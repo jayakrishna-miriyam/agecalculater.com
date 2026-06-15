@@ -222,9 +222,24 @@
         }
 
         @media (min-width: 768px) {
+            #root {
+                min-height: 0;
+            }
+
             .preload-shell {
                 display: none;
             }
+        }
+
+        #root {
+            position: relative;
+            min-height: 32rem;
+        }
+
+        .preload-shell {
+            position: absolute;
+            inset: 0 auto auto 0;
+            width: 100%;
         }
     </style>
     <script>
@@ -241,6 +256,8 @@
 </head>
 <body class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100">
     <div id="root">
+        <!-- PRELOAD_SHELL_START -->
+
         <main class="preload-shell" style="margin:0 auto;max-width:72rem;padding:1rem 1rem 3rem;">
             <header style="display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.75rem 0 1rem;border-bottom:1px solid #e2e8f0;">
                 <div style="font-size:1.25rem;font-weight:800;color:#0f172a;">AgeCalculater.com</div>
@@ -257,29 +274,8 @@
                     </p>
                 </div>
             </section>
-        </main></div>
-                <nav aria-label="Primary navigation" style="display:flex;flex-wrap:wrap;gap:0.75rem;font-size:0.95rem;">
-                    <a href="/" style="color:#0369a1;font-weight:700;">Home</a>
-                    <a href="/all-tools" style="color:#334155;">All Tools</a>
-                    <a href="/age-difference-calculator" style="color:#334155;">Age Difference</a>
-                    <a href="/birthday-countdown-calculator" style="color:#334155;">Birthday Countdown</a>
-                </nav>
-            </header>
-            <section style="margin-top:1.5rem;border:1px solid #e2e8f0;border-radius:1.5rem;background:linear-gradient(135deg,#e0f2fe,#ffffff,#dcfce7);padding:1.5rem;">
-                <div style="max-width:46rem;">
-                    <div style="display:inline-block;margin-bottom:1rem;padding:0.5rem 0.875rem;border-radius:9999px;background:#ffffff;color:#0369a1;font-size:0.9rem;font-weight:700;border:1px solid #bae6fd;">
-                        Exact age in years, months, and days
-                    </div>
-                    <h1 style="margin:0 0 0.75rem;font-size:2rem;line-height:1.1;font-weight:800;color:#0f172a;">Age Calculator Online</h1>
-                    <p style="margin:0 0 0.85rem;font-size:1rem;line-height:1.7;color:#334155;">
-                        Calculate exact age from a date of birth to today or any target date, then explore clear guides that explain the result and common real-world use cases.
-                    </p>
-                    <p style="margin:0;font-size:1rem;line-height:1.7;color:#475569;">
-                        This age calculator helps you measure the exact calendar age between a date of birth and a target date. Instead of giving a rough estimate, it counts full years first, then the remaining months, and then the leftover days so the result matches the way people normally express age.
-                    </p>
-                </div>
-            </section>
         </main>
+        <!-- PRELOAD_SHELL_END -->
     </div>
 </body>
 </html>

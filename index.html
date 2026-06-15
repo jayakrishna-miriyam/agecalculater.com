@@ -220,9 +220,24 @@
         }
 
         @media (min-width: 768px) {
+            #root {
+                min-height: 0;
+            }
+
             .preload-shell {
                 display: none;
             }
+        }
+
+        #root {
+            position: relative;
+            min-height: 32rem;
+        }
+
+        .preload-shell {
+            position: absolute;
+            inset: 0 auto auto 0;
+            width: 100%;
         }
     </style>
     <script>
@@ -237,6 +252,7 @@
 </head>
 <body class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100">
     <div id="root">
+        <!-- PRELOAD_SHELL_START -->
         <main class="preload-shell" style="margin:0 auto;max-width:72rem;padding:1rem 1rem 3rem;">
             <header style="display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.75rem 0 1rem;border-bottom:1px solid #e2e8f0;">
                 <div style="font-size:1.25rem;font-weight:800;color:#0f172a;">AgeCalculater.com</div>
@@ -262,6 +278,7 @@
                 </div>
             </section>
         </main>
+        <!-- PRELOAD_SHELL_END -->
     </div>
     <script type="module" src="/index.tsx"></script>
 </body>
