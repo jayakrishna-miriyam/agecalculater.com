@@ -37,7 +37,7 @@ The actual `.env` and mode-specific environment files are ignored by Git; `.env.
 
 Restart `npm run dev` after editing `.env`; rebuild and redeploy for production changes. Vite also supports `.env.local`, `.env.production`, and `.env.production.local`. The build audits use production mode. Existing process environment variables take priority over the files.
 
-**Netlify:** set both variables in the site's build environment before deploying this change. Netlify will not receive your ignored local `.env` through Git. Use the values in your local file, then trigger a new build. Advertising and analytics remain disabled; configuring these verification IDs does not turn ads on.
+**Netlify:** `netlify.toml` supplies both public identifiers under `[build.environment]`, so deployments do not depend on an ignored local `.env` or manual dashboard setup. These values already appear in the public verification markup and `ads.txt`; they are not private credentials. Update the committed configuration if the publisher or verification identifier changes. Keep private credentials out of this file. Local development still uses `.env`. Advertising and analytics remain disabled; configuring these verification IDs does not turn ads on.
 
 ## Project structure
 

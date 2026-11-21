@@ -2,6 +2,12 @@
 
 The repository changes address the implementation issues in [the original issue notes](issues.md). They do not constitute an AdSense approval, a production deployment, a Search Console submission, or verification of indexing. Google decides site eligibility after reviewing the deployed site.
 
+## November 21, 2026: Netlify build configuration fix
+
+The first deployment of commit `4880dd7` failed because Netlify did not have `ADSENSE_PUBLISHER_ID`; the ignored local `.env` was not available there. Added the existing public publisher ID and Search Console verification token to `[build.environment]` in `netlify.toml`. Both values are already emitted publicly in HTML/ads.txt. Private credentials remain excluded from Git. This supersedes the manual Netlify-variable setup instructions in earlier audit entries. Validation remains strict, and this configuration does not enable advertising or analytics.
+
+Validated an archived Git snapshot without `.env`, supplying only the two identifiers extracted from its `netlify.toml` and reusing the installed dependencies. The complete build passed: 12 tests, TypeScript, client/SSR builds, and all 16 generated-page checks. This reproduces the missing-local-environment condition; it does not substitute for confirming the subsequent hosted Netlify deployment.
+
 ## November 21, 2026: consent controls prepared; account activation pending
 
 The owner confirmed that European/US messages have not yet been published or that their status is unknown. **The certified CMP is not active in this build.** This work adds the website-side access and API adapter, not a replacement CMP or an assertion of regional legal compliance. No account messages were created/published and no advertising, analytics, or CMP network loader was enabled.

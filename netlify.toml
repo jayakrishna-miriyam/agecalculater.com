@@ -4,6 +4,10 @@
 
 [build.environment]
   NODE_VERSION = "24"
+  # Public verification identifiers, also emitted in the site's HTML and ads.txt.
+  # Keep these in version control so Netlify builds do not depend on a local .env.
+  ADSENSE_PUBLISHER_ID = "pub-3272888926635438"
+  GOOGLE_SITE_VERIFICATION = "JY3HLXIbrBZQRpLy2SEA6dwNxRgbKz9sWjK6C0Kc2h4"
 
 [[headers]]
   for = "/*"
