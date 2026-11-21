@@ -1,14 +1,20 @@
 {
-  "name": "age-calculater:-the-ultimate-age-calculator---accurate-&-live",
+  "name": "agecalculater",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
     "dev": "vite",
-    "prebuild": "node generate-sitemap.cjs",
-    "build": "vite build",
-    "postbuild": "node generate-static-pages.cjs && shx cp public/robots.txt dist/",
-    "preview": "vite preview"
+    "build": "npm test && npm run typecheck && vite build && vite build --ssr src/entry-server.tsx --outDir .cache/ssr && node scripts/generate-static-pages.mjs && npm run check:site && node scripts/clean.mjs --cache-only",
+    "preview": "node scripts/preview.mjs",
+    "test": "node --test tests/unit/*.test.mjs",
+    "typecheck": "tsc --noEmit",
+    "check:site": "node scripts/check-site.mjs",
+    "audit:live": "node scripts/audit-live.mjs",
+    "clean": "node scripts/clean.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -19,7 +25,6 @@
     "@types/react": "^19.1.12",
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.15",
-    "shx": "^0.4.0",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"

@@ -7,9 +7,17 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist-ssr
+node_modules/
+dist/
+.cache/
+output/
+.playwright-cli/
 *.local
+
+# Local configuration; commit only the setup template.
+.env
+.env.*
+!.env.example
 
 # Editor directories and files
 .vscode/*
